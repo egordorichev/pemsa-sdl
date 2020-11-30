@@ -1,8 +1,6 @@
 cmake_minimum_required(VERSION 3.17)
 project(pemsa_sdl)
 
-set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake/)
-
 add_subdirectory(libs/pemsa)
 
 find_package(SDL2 REQUIRED)
