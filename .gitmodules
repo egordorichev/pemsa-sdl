@@ -1,0 +1,3 @@
+[submodule "libs/pemsa"]
+	path = libs/pemsa
+	url = https://github.com/egordorichev/pemsa
