@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.17)
+cmake_minimum_required(VERSION 3.16)
 project(pemsa_sdl)
 
 add_subdirectory(libs/pemsa)
@@ -12,3 +12,4 @@ find_package(Threads REQUIRED)
 add_executable(pemsa_sdl src/sdl/main.cpp src/sdl/sdl_graphics_backend.cpp src/sdl/sdl_audio_backend.cpp src/sdl/sdl_input_backend.cpp)
 target_link_libraries(pemsa_sdl pemsa ${SDL2_LIBRARIES} Threads::Threads)
 set_target_properties(pemsa_sdl PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/dist/)
+set_target_properties(pemsa_sdl PROPERTIES OUTPUT_NAME "pemsa")
