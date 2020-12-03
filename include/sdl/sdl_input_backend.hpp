@@ -24,6 +24,8 @@ class SdlInputBackend : public PemsaInputBackend {
 		const char* readKey() override;
 		bool hasKey() override;
 		void reset() override;
+
+		const char* getClipboardText() override;
 	private:
 		uint8_t state[PEMSA_PLAYER_COUNT][PEMSA_BUTTON_COUNT];
 		uint8_t mouseState;

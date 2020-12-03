@@ -279,3 +279,7 @@ void SdlInputBackend::reset() {
 
 	this->mouseState = 0;
 }
+
+const char* SdlInputBackend::getClipboardText() {
+	return SDL_GetClipboardText();
+}
