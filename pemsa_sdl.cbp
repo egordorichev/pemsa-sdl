@@ -1,0 +1,463 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="pemsa_sdl"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;CMake Files\libs\;CMake Files\libs\pemsa\;CMake Files\libs\pemsa\libs\;CMake Files\libs\pemsa\libs\lua\;CMake Files\libs\pemsa\libs\fixmath\;CMake Files\..\;CMake Files\..\..\;CMake Files\..\..\..\;CMake Files\..\..\..\usr\;CMake Files\..\..\..\usr\lib\;CMake Files\..\..\..\usr\lib\x86_64-linux-gnu\;CMake Files\..\..\..\usr\lib\x86_64-linux-gnu\cmake\;CMake Files\..\..\..\usr\lib\x86_64-linux-gnu\cmake\SDL2\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/home/eugor/pemsa-sdl"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/eugor/pemsa-sdl/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/eugor/pemsa-sdl/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/eugor/pemsa-sdl/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/eugor/pemsa-sdl/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/home/eugor/pemsa-sdl"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/eugor/pemsa-sdl/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/eugor/pemsa-sdl/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/eugor/pemsa-sdl/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/eugor/pemsa-sdl/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/home/eugor/pemsa-sdl"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/eugor/pemsa-sdl/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/eugor/pemsa-sdl/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/eugor/pemsa-sdl/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/eugor/pemsa-sdl/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="pemsa_sdl">
+				<Option output="/home/eugor/pemsa-sdl/dist/pemsa" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/eugor/pemsa-sdl"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/include/SDL2"/>
+					<Add directory="/home/eugor/pemsa-sdl/libs/pemsa/include"/>
+					<Add directory="/home/eugor/pemsa-sdl/libs/pemsa/libs/lua"/>
+					<Add directory="/home/eugor/pemsa-sdl/libs/pemsa/libs/fixmath"/>
+					<Add directory="/home/eugor/pemsa-sdl/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/eugor/pemsa-sdl/Makefile&quot;  VERBOSE=1 pemsa_sdl"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/eugor/pemsa-sdl/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/eugor/pemsa-sdl/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/eugor/pemsa-sdl/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="pemsa_sdl/fast">
+				<Option output="/home/eugor/pemsa-sdl/dist/pemsa" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/eugor/pemsa-sdl"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/include/SDL2"/>
+					<Add directory="/home/eugor/pemsa-sdl/libs/pemsa/include"/>
+					<Add directory="/home/eugor/pemsa-sdl/libs/pemsa/libs/lua"/>
+					<Add directory="/home/eugor/pemsa-sdl/libs/pemsa/libs/fixmath"/>
+					<Add directory="/home/eugor/pemsa-sdl/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/eugor/pemsa-sdl/Makefile&quot;  VERBOSE=1 pemsa_sdl/fast"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/eugor/pemsa-sdl/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/eugor/pemsa-sdl/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/eugor/pemsa-sdl/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="pemsa">
+				<Option output="/home/eugor/pemsa-sdl/libs/pemsa/dist/libpemsa.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/eugor/pemsa-sdl/libs/pemsa"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/eugor/pemsa-sdl/libs/pemsa/libs/lua"/>
+					<Add directory="/home/eugor/pemsa-sdl/libs/pemsa/libs/fixmath"/>
+					<Add directory="/home/eugor/pemsa-sdl/libs/pemsa/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/eugor/pemsa-sdl/libs/pemsa/Makefile&quot;  VERBOSE=1 pemsa"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/eugor/pemsa-sdl/libs/pemsa/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/eugor/pemsa-sdl/libs/pemsa/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/eugor/pemsa-sdl/libs/pemsa/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="pemsa/fast">
+				<Option output="/home/eugor/pemsa-sdl/libs/pemsa/dist/libpemsa.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/eugor/pemsa-sdl/libs/pemsa"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/eugor/pemsa-sdl/libs/pemsa/libs/lua"/>
+					<Add directory="/home/eugor/pemsa-sdl/libs/pemsa/libs/fixmath"/>
+					<Add directory="/home/eugor/pemsa-sdl/libs/pemsa/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/eugor/pemsa-sdl/libs/pemsa/Makefile&quot;  VERBOSE=1 pemsa/fast"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/eugor/pemsa-sdl/libs/pemsa/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/eugor/pemsa-sdl/libs/pemsa/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/eugor/pemsa-sdl/libs/pemsa/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="fixmath">
+				<Option output="/home/eugor/pemsa-sdl/libs/pemsa/libs/fixmath/libfixmath.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/eugor/pemsa-sdl/libs/pemsa/libs/fixmath"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/eugor/pemsa-sdl/libs/pemsa/libs/fixmath/Makefile&quot;  VERBOSE=1 fixmath"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/eugor/pemsa-sdl/libs/pemsa/libs/fixmath/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/eugor/pemsa-sdl/libs/pemsa/libs/fixmath/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/eugor/pemsa-sdl/libs/pemsa/libs/fixmath/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="fixmath/fast">
+				<Option output="/home/eugor/pemsa-sdl/libs/pemsa/libs/fixmath/libfixmath.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/eugor/pemsa-sdl/libs/pemsa/libs/fixmath"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/eugor/pemsa-sdl/libs/pemsa/libs/fixmath/Makefile&quot;  VERBOSE=1 fixmath/fast"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/eugor/pemsa-sdl/libs/pemsa/libs/fixmath/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/eugor/pemsa-sdl/libs/pemsa/libs/fixmath/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/eugor/pemsa-sdl/libs/pemsa/libs/fixmath/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="customlua">
+				<Option output="/home/eugor/pemsa-sdl/libs/pemsa/libs/lua/libcustomlua.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/eugor/pemsa-sdl/libs/pemsa/libs/lua"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/eugor/pemsa-sdl/libs/pemsa/libs/lua/../fixmath"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/eugor/pemsa-sdl/libs/pemsa/libs/lua/Makefile&quot;  VERBOSE=1 customlua"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/eugor/pemsa-sdl/libs/pemsa/libs/lua/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/eugor/pemsa-sdl/libs/pemsa/libs/lua/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/eugor/pemsa-sdl/libs/pemsa/libs/lua/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="customlua/fast">
+				<Option output="/home/eugor/pemsa-sdl/libs/pemsa/libs/lua/libcustomlua.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/eugor/pemsa-sdl/libs/pemsa/libs/lua"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/eugor/pemsa-sdl/libs/pemsa/libs/lua/../fixmath"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/eugor/pemsa-sdl/libs/pemsa/libs/lua/Makefile&quot;  VERBOSE=1 customlua/fast"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/eugor/pemsa-sdl/libs/pemsa/libs/lua/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/eugor/pemsa-sdl/libs/pemsa/libs/lua/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/eugor/pemsa-sdl/libs/pemsa/libs/lua/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/home/eugor/pemsa-sdl/libs/pemsa/libs/fixmath/fix16.c">
+			<Option target="fixmath"/>
+		</Unit>
+		<Unit filename="/home/eugor/pemsa-sdl/libs/pemsa/libs/fixmath/fix16.h">
+			<Option target="fixmath"/>
+		</Unit>
+		<Unit filename="/home/eugor/pemsa-sdl/libs/pemsa/libs/fixmath/fix16_exp.c">
+			<Option target="fixmath"/>
+		</Unit>
+		<Unit filename="/home/eugor/pemsa-sdl/libs/pemsa/libs/fixmath/fix16_sqrt.c">
+			<Option target="fixmath"/>
+		</Unit>
+		<Unit filename="/home/eugor/pemsa-sdl/libs/pemsa/libs/fixmath/fix16_str.c">
+			<Option target="fixmath"/>
+		</Unit>
+		<Unit filename="/home/eugor/pemsa-sdl/libs/pemsa/libs/fixmath/fix16_trig.c">
+			<Option target="fixmath"/>
+		</Unit>
+		<Unit filename="/home/eugor/pemsa-sdl/libs/pemsa/libs/fixmath/fract32.c">
+			<Option target="fixmath"/>
+		</Unit>
+		<Unit filename="/home/eugor/pemsa-sdl/libs/pemsa/libs/fixmath/fract32.h">
+			<Option target="fixmath"/>
+		</Unit>
+		<Unit filename="/home/eugor/pemsa-sdl/libs/pemsa/libs/lua/lapi.c">
+			<Option target="customlua"/>
+		</Unit>
+		<Unit filename="/home/eugor/pemsa-sdl/libs/pemsa/libs/lua/lapi.h">
+			<Option target="customlua"/>
+		</Unit>
+		<Unit filename="/home/eugor/pemsa-sdl/libs/pemsa/libs/lua/lauxlib.c">
+			<Option target="customlua"/>
+		</Unit>
+		<Unit filename="/home/eugor/pemsa-sdl/libs/pemsa/libs/lua/lauxlib.h">
+			<Option target="customlua"/>
+		</Unit>
+		<Unit filename="/home/eugor/pemsa-sdl/libs/pemsa/libs/lua/lbaselib.c">
+			<Option target="customlua"/>
+		</Unit>
+		<Unit filename="/home/eugor/pemsa-sdl/libs/pemsa/libs/lua/lbitlib.c">
+			<Option target="customlua"/>
+		</Unit>
+		<Unit filename="/home/eugor/pemsa-sdl/libs/pemsa/libs/lua/lcode.c">
+			<Option target="customlua"/>
+		</Unit>
+		<Unit filename="/home/eugor/pemsa-sdl/libs/pemsa/libs/lua/lcode.h">
+			<Option target="customlua"/>
+		</Unit>
+		<Unit filename="/home/eugor/pemsa-sdl/libs/pemsa/libs/lua/lcorolib.c">
+			<Option target="customlua"/>
+		</Unit>
+		<Unit filename="/home/eugor/pemsa-sdl/libs/pemsa/libs/lua/lctype.c">
+			<Option target="customlua"/>
+		</Unit>
+		<Unit filename="/home/eugor/pemsa-sdl/libs/pemsa/libs/lua/lctype.h">
+			<Option target="customlua"/>
+		</Unit>
+		<Unit filename="/home/eugor/pemsa-sdl/libs/pemsa/libs/lua/ldblib.c">
+			<Option target="customlua"/>
+		</Unit>
+		<Unit filename="/home/eugor/pemsa-sdl/libs/pemsa/libs/lua/ldebug.c">
+			<Option target="customlua"/>
+		</Unit>
+		<Unit filename="/home/eugor/pemsa-sdl/libs/pemsa/libs/lua/ldebug.h">
+			<Option target="customlua"/>
+		</Unit>
+		<Unit filename="/home/eugor/pemsa-sdl/libs/pemsa/libs/lua/ldo.c">
+			<Option target="customlua"/>
+		</Unit>
+		<Unit filename="/home/eugor/pemsa-sdl/libs/pemsa/libs/lua/ldo.h">
+			<Option target="customlua"/>
+		</Unit>
+		<Unit filename="/home/eugor/pemsa-sdl/libs/pemsa/libs/lua/ldump.c">
+			<Option target="customlua"/>
+		</Unit>
+		<Unit filename="/home/eugor/pemsa-sdl/libs/pemsa/libs/lua/lfunc.c">
+			<Option target="customlua"/>
+		</Unit>
+		<Unit filename="/home/eugor/pemsa-sdl/libs/pemsa/libs/lua/lfunc.h">
+			<Option target="customlua"/>
+		</Unit>
+		<Unit filename="/home/eugor/pemsa-sdl/libs/pemsa/libs/lua/lgc.c">
+			<Option target="customlua"/>
+		</Unit>
+		<Unit filename="/home/eugor/pemsa-sdl/libs/pemsa/libs/lua/lgc.h">
+			<Option target="customlua"/>
+		</Unit>
+		<Unit filename="/home/eugor/pemsa-sdl/libs/pemsa/libs/lua/linit.c">
+			<Option target="customlua"/>
+		</Unit>
+		<Unit filename="/home/eugor/pemsa-sdl/libs/pemsa/libs/lua/liolib.c">
+			<Option target="customlua"/>
+		</Unit>
+		<Unit filename="/home/eugor/pemsa-sdl/libs/pemsa/libs/lua/llex.c">
+			<Option target="customlua"/>
+		</Unit>
+		<Unit filename="/home/eugor/pemsa-sdl/libs/pemsa/libs/lua/llex.h">
+			<Option target="customlua"/>
+		</Unit>
+		<Unit filename="/home/eugor/pemsa-sdl/libs/pemsa/libs/lua/lmathlib.c">
+			<Option target="customlua"/>
+		</Unit>
+		<Unit filename="/home/eugor/pemsa-sdl/libs/pemsa/libs/lua/lmem.c">
+			<Option target="customlua"/>
+		</Unit>
+		<Unit filename="/home/eugor/pemsa-sdl/libs/pemsa/libs/lua/lmem.h">
+			<Option target="customlua"/>
+		</Unit>
+		<Unit filename="/home/eugor/pemsa-sdl/libs/pemsa/libs/lua/loadlib.c">
+			<Option target="customlua"/>
+		</Unit>
+		<Unit filename="/home/eugor/pemsa-sdl/libs/pemsa/libs/lua/lobject.c">
+			<Option target="customlua"/>
+		</Unit>
+		<Unit filename="/home/eugor/pemsa-sdl/libs/pemsa/libs/lua/lobject.h">
+			<Option target="customlua"/>
+		</Unit>
+		<Unit filename="/home/eugor/pemsa-sdl/libs/pemsa/libs/lua/lopcodes.c">
+			<Option target="customlua"/>
+		</Unit>
+		<Unit filename="/home/eugor/pemsa-sdl/libs/pemsa/libs/lua/lopcodes.h">
+			<Option target="customlua"/>
+		</Unit>
+		<Unit filename="/home/eugor/pemsa-sdl/libs/pemsa/libs/lua/loslib.c">
+			<Option target="customlua"/>
+		</Unit>
+		<Unit filename="/home/eugor/pemsa-sdl/libs/pemsa/libs/lua/lparser.c">
+			<Option target="customlua"/>
+		</Unit>
+		<Unit filename="/home/eugor/pemsa-sdl/libs/pemsa/libs/lua/lparser.h">
+			<Option target="customlua"/>
+		</Unit>
+		<Unit filename="/home/eugor/pemsa-sdl/libs/pemsa/libs/lua/lstate.c">
+			<Option target="customlua"/>
+		</Unit>
+		<Unit filename="/home/eugor/pemsa-sdl/libs/pemsa/libs/lua/lstate.h">
+			<Option target="customlua"/>
+		</Unit>
+		<Unit filename="/home/eugor/pemsa-sdl/libs/pemsa/libs/lua/lstring.c">
+			<Option target="customlua"/>
+		</Unit>
+		<Unit filename="/home/eugor/pemsa-sdl/libs/pemsa/libs/lua/lstring.h">
+			<Option target="customlua"/>
+		</Unit>
+		<Unit filename="/home/eugor/pemsa-sdl/libs/pemsa/libs/lua/lstrlib.c">
+			<Option target="customlua"/>
+		</Unit>
+		<Unit filename="/home/eugor/pemsa-sdl/libs/pemsa/libs/lua/ltable.c">
+			<Option target="customlua"/>
+		</Unit>
+		<Unit filename="/home/eugor/pemsa-sdl/libs/pemsa/libs/lua/ltable.h">
+			<Option target="customlua"/>
+		</Unit>
+		<Unit filename="/home/eugor/pemsa-sdl/libs/pemsa/libs/lua/ltablib.c">
+			<Option target="customlua"/>
+		</Unit>
+		<Unit filename="/home/eugor/pemsa-sdl/libs/pemsa/libs/lua/ltm.c">
+			<Option target="customlua"/>
+		</Unit>
+		<Unit filename="/home/eugor/pemsa-sdl/libs/pemsa/libs/lua/ltm.h">
+			<Option target="customlua"/>
+		</Unit>
+		<Unit filename="/home/eugor/pemsa-sdl/libs/pemsa/libs/lua/lundump.c">
+			<Option target="customlua"/>
+		</Unit>
+		<Unit filename="/home/eugor/pemsa-sdl/libs/pemsa/libs/lua/lundump.h">
+			<Option target="customlua"/>
+		</Unit>
+		<Unit filename="/home/eugor/pemsa-sdl/libs/pemsa/libs/lua/lutf8lib.c">
+			<Option target="customlua"/>
+		</Unit>
+		<Unit filename="/home/eugor/pemsa-sdl/libs/pemsa/libs/lua/lvm.c">
+			<Option target="customlua"/>
+		</Unit>
+		<Unit filename="/home/eugor/pemsa-sdl/libs/pemsa/libs/lua/lvm.h">
+			<Option target="customlua"/>
+		</Unit>
+		<Unit filename="/home/eugor/pemsa-sdl/libs/pemsa/libs/lua/lzio.c">
+			<Option target="customlua"/>
+		</Unit>
+		<Unit filename="/home/eugor/pemsa-sdl/libs/pemsa/libs/lua/lzio.h">
+			<Option target="customlua"/>
+		</Unit>
+		<Unit filename="/home/eugor/pemsa-sdl/libs/pemsa/libs/lua/strtofix16.c">
+			<Option target="customlua"/>
+		</Unit>
+		<Unit filename="/home/eugor/pemsa-sdl/libs/pemsa/libs/lua/strtofix16.h">
+			<Option target="customlua"/>
+		</Unit>
+		<Unit filename="/home/eugor/pemsa-sdl/libs/pemsa/src/pemsa/audio/pemsa_audio_api.cpp">
+			<Option target="pemsa"/>
+		</Unit>
+		<Unit filename="/home/eugor/pemsa-sdl/libs/pemsa/src/pemsa/audio/pemsa_audio_channel.cpp">
+			<Option target="pemsa"/>
+		</Unit>
+		<Unit filename="/home/eugor/pemsa-sdl/libs/pemsa/src/pemsa/audio/pemsa_audio_module.cpp">
+			<Option target="pemsa"/>
+		</Unit>
+		<Unit filename="/home/eugor/pemsa-sdl/libs/pemsa/src/pemsa/audio/pemsa_wave_functions.cpp">
+			<Option target="pemsa"/>
+		</Unit>
+		<Unit filename="/home/eugor/pemsa-sdl/libs/pemsa/src/pemsa/cart/pemsa_cartridge_api.cpp">
+			<Option target="pemsa"/>
+		</Unit>
+		<Unit filename="/home/eugor/pemsa-sdl/libs/pemsa/src/pemsa/cart/pemsa_cartridge_module.cpp">
+			<Option target="pemsa"/>
+		</Unit>
+		<Unit filename="/home/eugor/pemsa-sdl/libs/pemsa/src/pemsa/cart/pemsa_emitter.cpp">
+			<Option target="pemsa"/>
+		</Unit>
+		<Unit filename="/home/eugor/pemsa-sdl/libs/pemsa/src/pemsa/cart/pemsa_scanner.cpp">
+			<Option target="pemsa"/>
+		</Unit>
+		<Unit filename="/home/eugor/pemsa-sdl/libs/pemsa/src/pemsa/graphics/pemsa_graphics_api.cpp">
+			<Option target="pemsa"/>
+		</Unit>
+		<Unit filename="/home/eugor/pemsa-sdl/libs/pemsa/src/pemsa/graphics/pemsa_graphics_module.cpp">
+			<Option target="pemsa"/>
+		</Unit>
+		<Unit filename="/home/eugor/pemsa-sdl/libs/pemsa/src/pemsa/input/pemsa_input_api.cpp">
+			<Option target="pemsa"/>
+		</Unit>
+		<Unit filename="/home/eugor/pemsa-sdl/libs/pemsa/src/pemsa/input/pemsa_input_module.cpp">
+			<Option target="pemsa"/>
+		</Unit>
+		<Unit filename="/home/eugor/pemsa-sdl/libs/pemsa/src/pemsa/memory/pemsa_draw_state_api.cpp">
+			<Option target="pemsa"/>
+		</Unit>
+		<Unit filename="/home/eugor/pemsa-sdl/libs/pemsa/src/pemsa/memory/pemsa_draw_state_module.cpp">
+			<Option target="pemsa"/>
+		</Unit>
+		<Unit filename="/home/eugor/pemsa-sdl/libs/pemsa/src/pemsa/memory/pemsa_memory_api.cpp">
+			<Option target="pemsa"/>
+		</Unit>
+		<Unit filename="/home/eugor/pemsa-sdl/libs/pemsa/src/pemsa/memory/pemsa_memory_module.cpp">
+			<Option target="pemsa"/>
+		</Unit>
+		<Unit filename="/home/eugor/pemsa-sdl/libs/pemsa/src/pemsa/pemsa_backend.cpp">
+			<Option target="pemsa"/>
+		</Unit>
+		<Unit filename="/home/eugor/pemsa-sdl/libs/pemsa/src/pemsa/pemsa_emulator.cpp">
+			<Option target="pemsa"/>
+		</Unit>
+		<Unit filename="/home/eugor/pemsa-sdl/libs/pemsa/src/pemsa/pemsa_module.cpp">
+			<Option target="pemsa"/>
+		</Unit>
+		<Unit filename="/home/eugor/pemsa-sdl/libs/pemsa/src/pemsa/util/pemsa_font.cpp">
+			<Option target="pemsa"/>
+		</Unit>
+		<Unit filename="/home/eugor/pemsa-sdl/libs/pemsa/src/pemsa/util/pemsa_math_api.cpp">
+			<Option target="pemsa"/>
+		</Unit>
+		<Unit filename="/home/eugor/pemsa-sdl/libs/pemsa/src/pemsa/util/pemsa_system_api.cpp">
+			<Option target="pemsa"/>
+		</Unit>
+		<Unit filename="/home/eugor/pemsa-sdl/libs/pemsa/src/pemsa/util/pemsa_util.cpp">
+			<Option target="pemsa"/>
+		</Unit>
+		<Unit filename="/home/eugor/pemsa-sdl/src/sdl/main.cpp">
+			<Option target="pemsa_sdl"/>
+		</Unit>
+		<Unit filename="/home/eugor/pemsa-sdl/src/sdl/sdl_audio_backend.cpp">
+			<Option target="pemsa_sdl"/>
+		</Unit>
+		<Unit filename="/home/eugor/pemsa-sdl/src/sdl/sdl_graphics_backend.cpp">
+			<Option target="pemsa_sdl"/>
+		</Unit>
+		<Unit filename="/home/eugor/pemsa-sdl/src/sdl/sdl_input_backend.cpp">
+			<Option target="pemsa_sdl"/>
+		</Unit>
+		<Unit filename="/home/eugor/pemsa-sdl/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="/home/eugor/pemsa-sdl/libs/pemsa/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\libs\pemsa\"/>
+		</Unit>
+		<Unit filename="/home/eugor/pemsa-sdl/libs/pemsa/libs/lua/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\libs\pemsa\libs\lua\"/>
+		</Unit>
+		<Unit filename="/home/eugor/pemsa-sdl/libs/pemsa/libs/fixmath/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\libs\pemsa\libs\fixmath\"/>
+		</Unit>
+		<Unit filename="/home/eugor/pemsa-sdl/../../../usr/lib/x86_64-linux-gnu/cmake/SDL2/sdl2-config.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\usr\lib\x86_64-linux-gnu\cmake\SDL2\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

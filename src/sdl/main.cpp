@@ -5,13 +5,25 @@
 #include "pemsa/pemsa.hpp"
 #include "SDL2/SDL.h"
 
+#include <experimental/filesystem>
 #include <iostream>
 
 int main(int argc, const char** argv) {
 	const char* cart = "test.p8";
+	const char* out = nullptr;
+	bool exportAll = false;
 
 	if (argc > 1) {
-		cart = argv[1];
+		if (strcmp(argv[1], "--export-all") == 0) {
+			exportAll = true;
+		} else {
+
+			cart = argv[1];
+
+			if (argc > 2) {
+				out = argv[2];
+			}
+		}
 	}
 
 	SDL_Init(SDL_INIT_EVERYTHING);
@@ -33,6 +45,25 @@ int main(int argc, const char** argv) {
 	PemsaEmulator emulator(graphics, new SdlAudioBackend(), input, &running);
 	SDL_ShowCursor(0);
 
+	if (exportAll) {
+		for (auto& dirEntry : std::experimental::filesystem::directory_iterator("./")) {
+			if (dirEntry.path().extension() != ".p8") {
+				continue;
+			}
+
+			if (!emulator.getCartridgeModule()->load(dirEntry.path().c_str(), true)) {
+				std::cerr << "Failed to load the cart " << dirEntry << "\n";
+			}	else {
+				emulator.getCartridgeModule()->save(("out/" + dirEntry.path().string()).c_str());
+			}
+		}
+
+		SDL_DestroyWindow(window);
+		SDL_Quit();
+
+		return 0;
+	}
+
 	if (!emulator.getCartridgeModule()->load(cart)) {
 		std::cerr << "Failed to load the cart " << cart << "\n";
 
@@ -40,6 +71,11 @@ int main(int argc, const char** argv) {
 		SDL_Quit();
 
 		return 1;
+	}
+
+	if (out != nullptr && emulator.getCartridgeModule()->save(out)) {
+		std::cout << "Saved the cart\n";
+		return 0;
 	}
 
 	SDL_Event event;

@@ -13,3 +13,5 @@ add_executable(pemsa_sdl src/sdl/main.cpp src/sdl/sdl_graphics_backend.cpp src/s
 target_link_libraries(pemsa_sdl pemsa ${SDL2_LIBRARIES} Threads::Threads)
 set_target_properties(pemsa_sdl PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/dist/)
 set_target_properties(pemsa_sdl PROPERTIES OUTPUT_NAME "pemsa")
+
+install(TARGETS pemsa_sdl)

@@ -64,8 +64,8 @@ static int gamepadbutton_to_button(Uint8 button) {
 		case SDL_CONTROLLER_BUTTON_DPAD_RIGHT: return 1;
 		case SDL_CONTROLLER_BUTTON_DPAD_UP: return 2;
 		case SDL_CONTROLLER_BUTTON_DPAD_DOWN: return 3;
-		case SDL_CONTROLLER_BUTTON_B: return 4;
-		case SDL_CONTROLLER_BUTTON_A: return 5;
+		case SDL_CONTROLLER_BUTTON_A: case SDL_CONTROLLER_BUTTON_B: return 4;
+		case SDL_CONTROLLER_BUTTON_X: case SDL_CONTROLLER_BUTTON_Y: return 5;
 	}
 
 	return -1;

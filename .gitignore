@@ -8,3 +8,7 @@ cmake-install*
 .cartdata
 code.lua
 .idea/
+cmake_install*
+*.cbp
+install_manifest
+CMakeFiles*
