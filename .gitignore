@@ -10,5 +10,5 @@ code.lua
 .idea/
 cmake_install*
 *.cbp
-install_manifest
+install_manifest*
 CMakeFiles*

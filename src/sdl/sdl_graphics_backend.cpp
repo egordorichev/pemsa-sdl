@@ -87,11 +87,11 @@ void SdlGraphicsBackend::flip() {
 	for (int i = 0; i < 16; i++) {
 		int c = drawStateModule->getScreenColor(i);
 
-		if (c > 128) {
-			c -= 128 - 16;
+		if (c > 127) {
+			c -= (128 - 16);
 		}
 
-		screenPalette[i] = c;
+		screenPalette[i] = c % 32;
 	}
 
 	for (int i = 0; i < 0x2000; i++) {
