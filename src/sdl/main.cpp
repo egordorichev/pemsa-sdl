@@ -91,8 +91,12 @@ int main(int argc, const char** argv) {
 			if (event.type == SDL_QUIT) {
 				running = false;
 			} else {
-				input->handleEvent(&event);
-				graphics->handleEvent(&event);
+				if (event.type == SDL_KEYDOWN && event.key.keysym.scancode == SDL_SCANCODE_F5) {
+					emulator.getCartridgeModule()->initiateSelfDestruct();
+				} else {
+					input->handleEvent(&event);
+					graphics->handleEvent(&event);
+				}
 			}
 		}
 
