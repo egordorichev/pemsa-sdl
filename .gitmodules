@@ -1,3 +1,4 @@
 [submodule "libs/pemsa"]
 	path = libs/pemsa
-	url = https://github.com/egordorichev/pemsa
+	url = https://github.com/egordorichev/pemsa/
+	branch = master
