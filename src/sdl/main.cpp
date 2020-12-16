@@ -5,7 +5,7 @@
 #include "pemsa/pemsa.hpp"
 #include "SDL2/SDL.h"
 
-#include <experimental/filesystem>
+#include <filesystem>
 #include <iostream>
 
 int main(int argc, const char** argv) {
@@ -17,7 +17,6 @@ int main(int argc, const char** argv) {
 		if (strcmp(argv[1], "--export-all") == 0) {
 			exportAll = true;
 		} else {
-
 			cart = argv[1];
 
 			if (argc > 2) {
@@ -46,7 +45,7 @@ int main(int argc, const char** argv) {
 	SDL_ShowCursor(0);
 
 	if (exportAll) {
-		for (auto& dirEntry : std::experimental::filesystem::directory_iterator("./")) {
+		for (auto& dirEntry : std::filesystem::directory_iterator("./")) {
 			if (dirEntry.path().extension() != ".p8") {
 				continue;
 			}
@@ -64,7 +63,7 @@ int main(int argc, const char** argv) {
 		return 0;
 	}
 
-	if (!emulator.getCartridgeModule()->load(cart)) {
+	if (!emulator.getCartridgeModule()->load(cart, out != nullptr)) {
 		std::cerr << "Failed to load the cart " << cart << "\n";
 
 		SDL_DestroyWindow(window);

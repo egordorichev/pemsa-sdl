@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.16)
 project(pemsa_sdl)
 
 add_subdirectory(libs/pemsa)
+set(CMAKE_CXX_STANDARD 17)
 
 find_package(SDL2 REQUIRED)
 include_directories(${SDL2_INCLUDE_DIRS} libs/pemsa/include/ libs/pemsa/libs/lua/ libs/pemsa/libs/fixmath/ include/)
