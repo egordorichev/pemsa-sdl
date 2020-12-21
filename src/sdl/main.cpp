@@ -45,6 +45,10 @@ int main(int argc, const char** argv) {
 	SDL_ShowCursor(0);
 
 	if (exportAll) {
+		if (!std::filesystem::exists("out")) {
+			std::filesystem::create_directory("out");
+		}
+
 		for (auto& dirEntry : std::filesystem::directory_iterator("./")) {
 			if (dirEntry.path().extension() != ".p8") {
 				continue;
@@ -53,7 +57,7 @@ int main(int argc, const char** argv) {
 			if (!emulator.getCartridgeModule()->load(dirEntry.path().c_str(), true)) {
 				std::cerr << "Failed to load the cart " << dirEntry << "\n";
 			}	else {
-				emulator.getCartridgeModule()->save(("out/" + dirEntry.path().string()).c_str());
+				emulator.getCartridgeModule()->save(("out/" + dirEntry.path().string().substr(2)).c_str());
 			}
 		}
 
@@ -100,17 +104,18 @@ int main(int argc, const char** argv) {
 		}
 
 		emulator.update(delta);
-		graphics->render();
 
 		Uint32 end_time = SDL_GetTicks();
 		Uint32 difference = end_time - start_time;
 
 		if (difference < ticks_per_frame) {
 			SDL_Delay(ticks_per_frame - difference);
-
-			end_time = SDL_GetTicks();
-			difference = end_time - start_time;
 		}
+
+		emulator.render();
+
+		end_time = SDL_GetTicks();
+		difference = end_time - start_time;
 
 		delta = difference / 1000.0;
 		graphics->setFps(1000.0 / difference);

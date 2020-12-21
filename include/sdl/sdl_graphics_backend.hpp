@@ -19,7 +19,7 @@ class SdlGraphicsBackend : public PemsaGraphicsBackend {
 		int getOffsetY();
 
 		void handleEvent(SDL_Event* event);
-		void render();
+		void render() override;
 
 		void setFps(int fps);
 		int getFps() override;
