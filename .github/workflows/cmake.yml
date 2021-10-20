@@ -21,9 +21,9 @@ jobs:
       - name: Download SDL2_image
         uses: albin-johansson/download-sdl2-image@v2
       - name: Download SDL2_ttf
-        uses: albin-johansson/download-sdl2-ttf@v2
+        uses: albin-johansson/download-sdl2-ttf@v1
       - name: Download SDL2_mixer
-        uses: albin-johansson/download-sdl2-mixer@v2
+        uses: albin-johansson/download-sdl2-mixer@v1
     
     
       - name: Configure CMake
