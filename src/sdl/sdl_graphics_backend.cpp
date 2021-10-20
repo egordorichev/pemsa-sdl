@@ -100,8 +100,6 @@ void SdlGraphicsBackend::flip() {
 		pixels[i * 2] = intPalette[screenPalette[val & 0x0f]];
 		pixels[i * 2 + 1] = intPalette[screenPalette[val >> 4]];
 	}
-
-	this->emulator->getInputModule()->updateInput();
 }
 
 SDL_Surface *SdlGraphicsBackend::getSurface() {
@@ -200,8 +198,7 @@ void SdlGraphicsBackend::render() {
 				SDL_RenderCopyEx(this->renderer, texture, &src, &dst, 0, NULL, SDL_FLIP_HORIZONTAL);
 				dst.y += dst.h;
 
-				SDL_RenderCopyEx(this->renderer, texture, &src, &dst, 0, NULL,
-				                 (SDL_RendererFlip) (SDL_FLIP_HORIZONTAL | SDL_FLIP_VERTICAL));
+				SDL_RenderCopyEx(this->renderer, texture, &src, &dst, 0, NULL, (SDL_RendererFlip) (SDL_FLIP_HORIZONTAL | SDL_FLIP_VERTICAL));
 				dst.x -= dst.w;
 
 				SDL_RenderCopyEx(this->renderer, texture, &src, &dst, 0, NULL, SDL_FLIP_VERTICAL);

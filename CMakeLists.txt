@@ -12,6 +12,12 @@ find_package(Threads REQUIRED)
 
 add_executable(pemsa_sdl src/sdl/main.cpp src/sdl/sdl_graphics_backend.cpp src/sdl/sdl_audio_backend.cpp src/sdl/sdl_input_backend.cpp)
 target_link_libraries(pemsa_sdl pemsa ${SDL2_LIBRARIES} Threads::Threads)
+
+set_target_properties(pemsa_sdl PROPERTIES LINK_SEARCH_START_STATIC 1)
+set_target_properties(pemsa_sdl PROPERTIES LINK_SEARCH_END_STATIC 1)
+set(CMAKE_FIND_LIBRARY_SUFFIXES ".a")
+set(CMAKE_EXE_LINKER_FLAGS "-static-libgcc -static-libstdc++")
+
 set_target_properties(pemsa_sdl PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/dist/)
 set_target_properties(pemsa_sdl PROPERTIES OUTPUT_NAME "pemsa")
 

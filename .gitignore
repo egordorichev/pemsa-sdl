@@ -11,4 +11,7 @@ code.lua
 cmake_install*
 *.cbp
 install_manifest*
+build/
+.vscode/
+Testing/*
 CMakeFiles*

@@ -9,18 +9,26 @@
 #include <iostream>
 
 int main(int argc, const char** argv) {
-	const char* cart = "test.p8";
+	const char* cart = "splore.p8";
 	const char* out = nullptr;
 	bool exportAll = false;
+	bool enableSplash = true;
 
 	if (argc > 1) {
-		if (strcmp(argv[1], "--export-all") == 0) {
-			exportAll = true;
-		} else {
-			cart = argv[1];
+		for (int i = 1; i < argc; i++) {
+			const char *arg = argv[i];
 
-			if (argc > 2) {
-				out = argv[2];
+			if (strcmp(arg, "--export-all") == 0) {
+				exportAll = true;
+			} else if (strcmp(arg, "--no-splash") == 0) {
+				enableSplash = false;
+			} else if (strcmp(arg, "--save") == 0) {
+				if (argc > i + 1) {
+					out = argv[i + 1];
+					i++;
+				}
+			} else {
+				cart = argv[i];
 			}
 		}
 	}
@@ -41,7 +49,7 @@ int main(int argc, const char** argv) {
 	SdlInputBackend* input = new SdlInputBackend();
 	bool running = true;
 
-	PemsaEmulator emulator(graphics, new SdlAudioBackend(), input, &running);
+	PemsaEmulator emulator(graphics, new SdlAudioBackend(), input, &running, enableSplash);
 	SDL_ShowCursor(0);
 
 	if (exportAll) {
@@ -82,7 +90,6 @@ int main(int argc, const char** argv) {
 	}
 
 	SDL_Event event;
-
 	Uint32 start_time = SDL_GetTicks();
 
 	double fps = 60;
@@ -93,6 +100,7 @@ int main(int argc, const char** argv) {
 		while (SDL_PollEvent(&event)) {
 			if (event.type == SDL_QUIT) {
 				running = false;
+				emulator.stop();
 			} else {
 				if (event.type == SDL_KEYDOWN && event.key.keysym.scancode == SDL_SCANCODE_F5) {
 					emulator.getCartridgeModule()->initiateSelfDestruct();
@@ -103,7 +111,9 @@ int main(int argc, const char** argv) {
 			}
 		}
 
-		emulator.update(delta);
+		if (emulator.update(delta)) {
+			// running = false;
+		}
 
 		Uint32 end_time = SDL_GetTicks();
 		Uint32 difference = end_time - start_time;
