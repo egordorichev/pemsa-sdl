@@ -1,0 +1,33 @@
+name: CMake
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+env:
+  BUILD_TYPE: Release
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Download SDL2
+        uses: albin-johansson/download-sdl2@v2
+      - name: Download SDL2_image
+        uses: albin-johansson/download-sdl2-image@v2
+      - name: Download SDL2_ttf
+        uses: albin-johansson/download-sdl2-ttf@v1
+      - name: Download SDL2_mixer
+        uses: albin-johansson/download-sdl2-mixer@v1
+    
+    
+      - name: Configure CMake
+        run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
+
+      - name: Build
+        run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
