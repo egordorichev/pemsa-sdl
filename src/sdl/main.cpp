@@ -1,6 +1,7 @@
 #include "sdl/sdl_graphics_backend.hpp"
 #include "sdl/sdl_audio_backend.hpp"
 #include "sdl/sdl_input_backend.hpp"
+#include "sdl/no_cart.hpp"
 
 #include "pemsa/pemsa.hpp"
 #include "SDL2/SDL.h"
@@ -11,8 +12,10 @@
 int main(int argc, const char** argv) {
 	const char* cart = "splore.p8";
 	const char* out = nullptr;
+
 	bool exportAll = false;
 	bool enableSplash = true;
+	bool cartSet = false;
 
 	if (argc > 1) {
 		for (int i = 1; i < argc; i++) {
@@ -29,6 +32,7 @@ int main(int argc, const char** argv) {
 				}
 			} else {
 				cart = argv[i];
+				cartSet = true;
 			}
 		}
 	}
@@ -76,12 +80,16 @@ int main(int argc, const char** argv) {
 	}
 
 	if (!emulator.getCartridgeModule()->load(cart, out != nullptr)) {
-		std::cerr << "Failed to load the cart " << cart << "\n";
+		if (cartSet) {
+			std::cerr << "Failed to load the cart " << cart << "\n";
 
-		SDL_DestroyWindow(window);
-		SDL_Quit();
+			SDL_DestroyWindow(window);
+			SDL_Quit();
 
-		return 1;
+			return 1;
+		} else {
+			emulator.getCartridgeModule()->loadFromString("nocart", noCartPlaceholder, false);
+		}
 	}
 
 	if (out != nullptr && emulator.getCartridgeModule()->save(out)) {
@@ -111,9 +119,7 @@ int main(int argc, const char** argv) {
 			}
 		}
 
-		if (emulator.update(delta)) {
-			// running = false;
-		}
+		emulator.update(delta);
 
 		Uint32 end_time = SDL_GetTicks();
 		Uint32 difference = end_time - start_time;
