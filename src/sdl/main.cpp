@@ -7,7 +7,12 @@
 #include "SDL2/SDL.h"
 
 #include <filesystem>
+#include <cstring>
 #include <iostream>
+
+#ifdef _WIN32
+#include <comdef.h>
+#endif
 
 int main(int argc, const char** argv) {
 	const char* cart = "splore.p8";
@@ -66,7 +71,16 @@ int main(int argc, const char** argv) {
 				continue;
 			}
 
-			if (!emulator.getCartridgeModule()->load(dirEntry.path().c_str(), true)) {
+			auto str = dirEntry.path().c_str();
+
+			#ifdef _WIN32 // Dear windows, just why?
+					_bstr_t b(str);
+					const char* out = b;
+			#else
+					const char* out = str;
+			#endif
+
+			if (!emulator.getCartridgeModule()->load(out, true)) {
 				std::cerr << "Failed to load the cart " << dirEntry << "\n";
 			}	else {
 				emulator.getCartridgeModule()->save(("out/" + dirEntry.path().string().substr(2)).c_str());

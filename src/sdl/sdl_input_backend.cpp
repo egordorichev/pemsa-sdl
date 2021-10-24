@@ -5,6 +5,7 @@
 #include "pemsa/pemsa_emulator.hpp"
 
 #include <iostream>
+#include <cstring>
 
 // Split the controller DB to bypass ANSI compatibility string character limit.
 const char* controller_db =
