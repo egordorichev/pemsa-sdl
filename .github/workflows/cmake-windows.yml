@@ -49,7 +49,7 @@ jobs:
       shell: powershell
       run: |
         Move-Item -Path ${{github.workspace}}\libs\SDL2-${{env.SDL_VERSION}} -Destination ${{github.workspace}}\libs\SDL2_windows\
-        cd ${{github.workspace}}\libs\SD2L_windows
+        cd ${{github.workspace}}\libs\SDL2_windows
         ls
         
 
