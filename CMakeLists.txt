@@ -4,6 +4,11 @@ project(pemsa_sdl)
 add_subdirectory(libs/pemsa)
 set(CMAKE_CXX_STANDARD 17)
 
+IF( DEFINED WINDOWS )
+    add_compile_definitions(WINDOWS)
+    set(SDL2_DIR libs/SDL2_windows)
+ENDIF( DEFINED WINDOWS )
+
 find_package(SDL2 REQUIRED)
 include_directories(${SDL2_INCLUDE_DIRS} libs/pemsa/include/ libs/pemsa/libs/lua/ libs/pemsa/libs/fixmath/ include/)
 

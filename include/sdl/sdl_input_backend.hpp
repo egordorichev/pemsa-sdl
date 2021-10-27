@@ -3,7 +3,12 @@
 
 #include "pemsa/input/pemsa_input_backend.hpp"
 #include "pemsa/input/pemsa_input_module.hpp"
+
+#ifdef WINDOWS
+#include "SDL.h"
+#else
 #include "SDL2/SDL.h"
+#endif
 
 #include <vector>
 

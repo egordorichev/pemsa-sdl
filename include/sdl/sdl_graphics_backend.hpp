@@ -2,7 +2,12 @@
 #define SDL_GRAPHICS_BACKEND_HPP
 
 #include "pemsa/graphics/pemsa_graphics_backend.hpp"
+
+#ifdef WINDOWS
+#include "SDL.h"
+#else
 #include "SDL2/SDL.h"
+#endif
 
 class SdlGraphicsBackend : public PemsaGraphicsBackend {
 	public:
