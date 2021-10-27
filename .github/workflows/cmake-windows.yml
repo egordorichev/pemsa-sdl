@@ -26,6 +26,10 @@ jobs:
     - name: submodules-init
       # You may pin to the exact commit or the version.
       uses: snickerbockers/submodules-init@v4
+      
+    - name: sync submodules to master
+      shell: powershell
+      run: git submodule foreach git pull origin master
     
     - name: Download SDL sources
       shell: powershell
