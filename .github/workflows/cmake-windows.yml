@@ -24,19 +24,19 @@ jobs:
     
     - name: Download SDL sources
       shell: powershell
-      run: Invoke-WebRequest -Uri "https://libsdl.org/release/SDL2-devel-${{SDL_VERSION}}-VC.zip" `
-                             -OutFile ${{github.workspace}}/libs/SDL2-devel-${{SDL_VERSION}}-VC.zip
+      run: Invoke-WebRequest -Uri "https://libsdl.org/release/SDL2-devel-${{env.SDL_VERSION}}-VC.zip" `
+                             -OutFile ${{github.workspace}}/libs/SDL2-devel-${{env.SDL_VERSION}}-VC.zip
 
     - name: Unzip sources
       shell: cmd
       run: |
         cd ${{github.workspace}}/libs
-        7z x -y SDL2-devel-${{SDL_VERSION}}-VC.zip
-        del SDL2-devel-${{SDL_VERSION}}-VC.zip
+        7z x -y SDL2-devel-${{env.SDL_VERSION}}-VC.zip
+        del SDL2-devel-${{env.SDL_VERSION}}-VC.zip
       
     - name: Move SDL2 sources to correct folder
       shell: powershell
-      run: Move-Item -Path SDL2-${{SDL_VERSION}}/* -Destination ${{github.workspace}}/libs/SDL_windows -force
+      run: Move-Item -Path SDL2-${{env.SDL_VERSION}}/* -Destination ${{github.workspace}}/libs/SDL_windows -force
 
     - name: Configure CMake
       # Configure CMake in a 'build' subdirectory. `CMAKE_BUILD_TYPE` is only required if you are using a single-configuration generator such as make.
