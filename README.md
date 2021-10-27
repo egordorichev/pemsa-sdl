@@ -13,7 +13,7 @@ make
 
 ### Windows
 
-Download the SDL2 windows development libraries [here](https://www.libsdl.org/download-2.0.php) and place it under `libs/SDL_windows`
+Download the Visual C++ SDL2 windows development libraries [here](https://www.libsdl.org/download-2.0.php) and place its contents under `libs/SDL_windows` (i.e. include and lib folders)
 
 ```
 git submodule update --init --recursive
