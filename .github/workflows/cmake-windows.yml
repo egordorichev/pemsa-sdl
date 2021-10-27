@@ -48,8 +48,6 @@ jobs:
     - name: Move SDL2 sources to correct folder
       shell: powershell
       run: |
-        Move-Item -Path ${{github.workspace}}/libs/SDL2-${{env.SDL_VERSION}}/lib -Destination ${{github.workspace}}/libs/SDL_windows/ -force
-        Move-Item -Path ${{github.workspace}}/libs/SDL2-${{env.SDL_VERSION}}/include -Destination ${{github.workspace}}/libs/SDL_windows/include -force
         cd ${{github.workspace}}/libs/SDL_windows
         ls
 
