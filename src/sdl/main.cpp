@@ -4,7 +4,12 @@
 #include "sdl/no_cart.hpp"
 
 #include "pemsa/pemsa.hpp"
+
+#ifdef WINDOWS
+#include "SDL.h"
+#else
 #include "SDL2/SDL.h"
+#endif
 
 #include <filesystem>
 #include <cstring>
@@ -14,7 +19,7 @@
 #include <comdef.h>
 #endif
 
-int main(int argc, const char** argv) {
+int main(int argc, char* argv[]) {
 	const char* cart = "splore.p8";
 	const char* out = nullptr;
 
