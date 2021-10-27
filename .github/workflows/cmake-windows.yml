@@ -32,9 +32,32 @@ jobs:
     - name: sync submodules to master
       shell: powershell
       run: git submodule foreach git pull origin master
+    
+    - name: Download SDL sources
+      shell: powershell
+      run: Invoke-WebRequest -Uri "https://libsdl.org/release/SDL2-devel-${{env.SDL_VERSION}}-VC.zip" `
+                             -OutFile ${{github.workspace}}/libs/SDL2-devel-${{env.SDL_VERSION}}-VC.zip
+
+    - name: Unzip sources
+      shell: cmd
+      run: |
+        cd ${{github.workspace}}/libs
+        7z x -y SDL2-devel-${{env.SDL_VERSION}}-VC.zip
+        del SDL2-devel-${{env.SDL_VERSION}}-VC.zip
       
     - name: Move SDL2 sources to correct folder
       shell: powershell
       run: |
-        cd ${{github.workspace}}\libs
-        ls  
+        Move-Item -Path ${{github.workspace}}\libs\SDL2-${{env.SDL_VERSION}} -Destination ${{github.workspace}}\libs\SDL_windows\
+        cd ${{github.workspace}}\libs\SDL_windows
+        ls
+
+    - name: Configure CMake
+      # Configure CMake in a 'build' subdirectory. `CMAKE_BUILD_TYPE` is only required if you are using a single-configuration generator such as make.
+      # See https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html?highlight=cmake_build_type
+      run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}} -D WINDOWS=1
+
+    - name: Build
+      # Build your program with the given configuration
+      run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
+    
