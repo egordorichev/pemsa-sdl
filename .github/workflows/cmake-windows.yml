@@ -48,9 +48,10 @@ jobs:
     - name: Move SDL2 sources to correct folder
       shell: powershell
       run: |
-        Move-Item -Path ${{github.workspace}}\libs\SDL2-${{env.SDL_VERSION}} -Destination ${{github.workspace}}\libs\SDL_windows\
         cd ${{github.workspace}}\libs\SDL_windows
         ls
+        Move-Item -Path ${{github.workspace}}\libs\SDL2-${{env.SDL_VERSION}} -Destination ${{github.workspace}}\libs\SDL_windows\
+        
 
     - name: Configure CMake
       # Configure CMake in a 'build' subdirectory. `CMAKE_BUILD_TYPE` is only required if you are using a single-configuration generator such as make.
