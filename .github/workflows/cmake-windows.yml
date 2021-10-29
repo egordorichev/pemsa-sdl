@@ -59,10 +59,10 @@ jobs:
       
     - name: Check for the artifacts
       shell: bash
-      run: ls -l dist
+      run: ls -l dist/Release/
     
     - uses: actions/upload-artifact@v2
       with:
         name: pemsa-windows
-        path: dist/pemsa.exe
+        path: dist/Release/pemsa.exe
     
