@@ -64,5 +64,5 @@ jobs:
     - uses: actions/upload-artifact@v2
       with:
         name: pemsa-windows
-        path: dist/Release/pemsa.exe
+        path: dist/Release/
     
