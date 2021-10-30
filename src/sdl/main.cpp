@@ -48,7 +48,7 @@ int main(int argc, char* argv[]) {
 	}
 
 	SDL_Init(SDL_INIT_EVERYTHING);
-	SDL_Window* window = SDL_CreateWindow("pemsa", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 512,512, SDL_WINDOW_RESIZABLE);
+	SDL_Window* window = SDL_CreateWindow("pemsa", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 512,512, SDL_WINDOW_RESIZABLE | SDL_WINDOW_FULLSCREEN_DESKTOP);
 
 	if (window == NULL) {
 		std::cerr << "Failed to open a window\n";
@@ -121,6 +121,8 @@ int main(int argc, char* argv[]) {
 
 	double fps = 60;
 	double delta = 1 / fps;
+	bool fullscreen = true;
+
 	Uint32 ticks_per_frame = 1000 / fps;
 
 	while (running) {
@@ -129,12 +131,21 @@ int main(int argc, char* argv[]) {
 				// running = false;
 				emulator.stop();
 			} else {
-				if (event.type == SDL_KEYDOWN && event.key.keysym.scancode == SDL_SCANCODE_F5) {
-					emulator.getCartridgeModule()->initiateSelfDestruct();
-				} else {
-					input->handleEvent(&event);
-					graphics->handleEvent(&event);
+				if (event.type == SDL_KEYDOWN) {
+					switch (event.key.keysym.scancode) {
+						case SDL_SCANCODE_F5: emulator.getCartridgeModule()->initiateSelfDestruct(); break;
+
+						case SDL_SCANCODE_F11: {
+							fullscreen = !fullscreen;
+							SDL_SetWindowFullscreen(window, fullscreen ? SDL_WINDOW_FULLSCREEN_DESKTOP : 0);
+
+							break;
+						}
+					}
 				}
+
+				input->handleEvent(&event);
+				graphics->handleEvent(&event);
 			}
 		}
 
