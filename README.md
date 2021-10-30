@@ -5,6 +5,14 @@ SDL2 backend for pemsa pico8 runtime
 
 ### Linux
 
+Install SDL2:
+
+```
+sudo apt install libsdl2-dev
+```
+
+And compile:
+
 ```
 git submodule update --init --recursive
 cmake .
