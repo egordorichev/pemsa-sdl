@@ -126,7 +126,7 @@ int main(int argc, char* argv[]) {
 	while (running) {
 		while (SDL_PollEvent(&event)) {
 			if (event.type == SDL_QUIT) {
-				running = false;
+				// running = false;
 				emulator.stop();
 			} else {
 				if (event.type == SDL_KEYDOWN && event.key.keysym.scancode == SDL_SCANCODE_F5) {
@@ -138,7 +138,9 @@ int main(int argc, char* argv[]) {
 			}
 		}
 
-		emulator.update(delta);
+		if (emulator.update(delta)) {
+			running = false;
+		}
 
 		Uint32 end_time = SDL_GetTicks();
 		Uint32 difference = end_time - start_time;
