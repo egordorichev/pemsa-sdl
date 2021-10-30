@@ -40,6 +40,9 @@ jobs:
     - name: Copy carts
       run: cp carts/* dist/
       
+    - name: Make the runner runnable
+      run: chmod a+x ./dist/pemsa
+      
     - uses: actions/upload-artifact@v2
       with:
         name: pemsa-linux
