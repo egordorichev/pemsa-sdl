@@ -60,6 +60,7 @@ static int intPalette[] = {
 SdlGraphicsBackend::SdlGraphicsBackend(SDL_Window *window) {
 	this->window = window;
 	this->renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+	this->intScales = true;
 
 	if (this->renderer == nullptr) {
 		std::cerr << "Failed to create renderer: " << SDL_GetError() << "\n";
@@ -128,7 +129,12 @@ void SdlGraphicsBackend::resize() {
 	int width, height;
 	SDL_GetWindowSize(this->window, &width, &height);
 
-	this->scale = floor(fmin(width / 128, height / 128));
+	this->scale = (fmin(width / 128.0f, height / 128.0f));
+
+	if (this->intScales) {
+		this->scale = floor(this->scale);
+	}
+
 	this->offsetX = (width - this->scale * 128) / 2;
 	this->offsetY = (height - this->scale * 128) / 2;
 }
@@ -246,4 +252,9 @@ void SdlGraphicsBackend::setFps(int fps) {
 
 int SdlGraphicsBackend::getFps() {
 	return this->fps;
+}
+
+void SdlGraphicsBackend::toggleIntScales() {
+	this->intScales = !this->intScales;
+	this->resize();
 }

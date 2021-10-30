@@ -28,11 +28,14 @@ class SdlGraphicsBackend : public PemsaGraphicsBackend {
 
 		void setFps(int fps);
 		int getFps() override;
+
+		void toggleIntScales();
 	private:
 		SDL_Window* window;
 		SDL_Renderer* renderer;
 		SDL_Surface* surface;
 
+		bool intScales;
 		float scale;
 		int offsetX;
 		int offsetY;
