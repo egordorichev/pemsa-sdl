@@ -60,8 +60,8 @@ jobs:
     - name: Move SDL2.dll and carts folder to release folder
       shell: powershell
       run: |
-        Move-Item -Path ${{github.workspace}}\libs\SDL2-${{env.SDL_VERSION}}\lib\x64\SDL2.dll -Destination ${{github.workspace}}\dist\Release\
-        Move-Item -Path ${{github.workspace}}\carts\* -Destination ${{github.workspace}}\dist\Release\
+        Copy-Item -Path ${{github.workspace}}\libs\SDL2_windows\lib\x64\SDL2.dll -Destination ${{github.workspace}}\dist\Release\
+        Copy-Item -Path ${{github.workspace}}\carts\* -Destination ${{github.workspace}}\dist\Release\
       
     - name: Check for the artifacts
       shell: bash
