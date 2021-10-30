@@ -1,10 +1,11 @@
 pico-8 cartridge // http://www.pico-8.com
 version 29
 __lua__
--- splore v0
+-- splore v0.1
 -- @egordorichev
 
-local current=1
+cartdata("__splore")
+local current=max(1,dget(0) or 1)
 
 function read_card()
  title,author=__read_cdata(carts[current][1])
@@ -17,6 +18,7 @@ end
 
 function _init()
  carts=__list_carts()
+ current=min(#carts,current)
  
  for c in all(carts) do
   title,author,label=__read_cdata(c[1])
@@ -28,6 +30,7 @@ function _init()
 end
 
 function update_bg()
+ dset(0,current)
  local d=carts[current][4]
  for i=0,128*128-1 do
   sset(
@@ -53,6 +56,7 @@ function _draw()
  local x,y=16,72
  local ex,ey=112,127
  
+ rectfill(x-1,y-1,ex+1,ey+1,7)
  rectfill(x,y,ex,ey,0)
  clip(x,y,ex-x-1,ey-y+1)
  
