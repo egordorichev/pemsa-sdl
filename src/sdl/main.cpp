@@ -67,11 +67,18 @@ int main(int argc, char* argv[]) {
 	SDL_ShowCursor(0);
 
 	if (exportAll) {
-		if (!std::filesystem::exists("out")) {
-			std::filesystem::create_directory("out");
+		if (!std::filesystem::exists("input")) {
+			std::cerr << "No 'input' directory detected\n";
+			return 1;
 		}
 
-		for (auto& dirEntry : std::filesystem::directory_iterator("./")) {
+		if (!std::filesystem::exists("output")) {
+			std::filesystem::create_directory("output");
+		}
+
+		int count = 0;
+
+		for (auto& dirEntry : std::filesystem::directory_iterator("./input")) {
 			if (dirEntry.path().extension() != ".p8") {
 				continue;
 			}
@@ -88,9 +95,12 @@ int main(int argc, char* argv[]) {
 			if (!emulator.getCartridgeModule()->load(out, true)) {
 				std::cerr << "Failed to load the cart " << dirEntry << "\n";
 			}	else {
-				emulator.getCartridgeModule()->save(("out/" + dirEntry.path().string().substr(2)).c_str());
+				emulator.getCartridgeModule()->save(("output/" + dirEntry.path().filename().string().substr(2)).c_str());
+				count++;
 			}
 		}
+
+		std::cout << "Exported " << count << " carts\n";
 
 		SDL_DestroyWindow(window);
 		SDL_Quit();
