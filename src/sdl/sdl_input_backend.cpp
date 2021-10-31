@@ -46,7 +46,7 @@ static int scancode_to_button(SDL_Scancode code, int* player) {
 		case SDL_SCANCODE_DOWN: return 3;
 		case SDL_SCANCODE_C: case SDL_SCANCODE_Z: return 4;
 		case SDL_SCANCODE_X: return 5;
-		case SDL_SCANCODE_RETURN: return 6;
+		case SDL_SCANCODE_RETURN: case SDL_SCANCODE_ESCAPE: return 6;
 
 		case SDL_SCANCODE_S: *player = 1; return 0;
 		case SDL_SCANCODE_F: *player = 1; return 1;
