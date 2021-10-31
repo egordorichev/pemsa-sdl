@@ -2,7 +2,7 @@ name: CMake-Linux
 
 on:
   workflow_dispatch:
-  push:
+  release:
     branches: [ master ]
   pull_request:
       branches: [ master ]
