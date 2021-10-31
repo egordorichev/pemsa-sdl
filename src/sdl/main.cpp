@@ -95,7 +95,7 @@ int main(int argc, char* argv[]) {
 			if (!emulator.getCartridgeModule()->load(out, true)) {
 				std::cerr << "Failed to load the cart " << dirEntry << "\n";
 			}	else {
-				emulator.getCartridgeModule()->save(("output/" + dirEntry.path().filename().string().substr(2)).c_str());
+				emulator.getCartridgeModule()->save(("output/" + dirEntry.path().filename().string()).c_str());
 				count++;
 			}
 		}
