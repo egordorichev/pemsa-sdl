@@ -5,6 +5,10 @@
 
 #include "pemsa/pemsa.hpp"
 
+#ifdef XBOX
+#include "xbox_input_backend.hpp"
+#endif
+
 #ifdef WINDOWS
 #include "SDL.h"
 #else
@@ -60,12 +64,13 @@ int main(int argc, char* argv[]) {
 	SDL_SetWindowMinimumSize(window, 128, 128);
 
 	SdlGraphicsBackend* graphics = new SdlGraphicsBackend(window);
-	SdlInputBackend* input = new SdlInputBackend();
 	bool running = true;
 
-	PemsaEmulator emulator(graphics, new SdlAudioBackend(), input, &running, enableSplash);
 	SDL_ShowCursor(0);
 
+#ifndef XBOX
+	SdlInputBackend* input = new SdlInputBackend();
+	PemsaEmulator emulator(graphics, new SdlAudioBackend(), input, &running, enableSplash);
 	if (exportAll) {
 		if (!std::filesystem::exists("out")) {
 			std::filesystem::create_directory("out");
@@ -97,6 +102,9 @@ int main(int argc, char* argv[]) {
 
 		return 0;
 	}
+#else
+	PemsaEmulator emulator(graphics, new SdlAudioBackend(), new XboxInputBackend(), &running, enableSplash);
+#endif
 
 	if (!emulator.getCartridgeModule()->load(cart, out != nullptr)) {
 		if (cartSet) {
@@ -132,7 +140,9 @@ int main(int argc, char* argv[]) {
 				if (event.type == SDL_KEYDOWN && event.key.keysym.scancode == SDL_SCANCODE_F5) {
 					emulator.getCartridgeModule()->initiateSelfDestruct();
 				} else {
+#ifndef XBOX
 					input->handleEvent(&event);
+#endif
 					graphics->handleEvent(&event);
 				}
 			}
