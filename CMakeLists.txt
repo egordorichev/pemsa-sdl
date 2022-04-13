@@ -33,5 +33,6 @@ set(CMAKE_EXE_LINKER_FLAGS "-static-libgcc -static-libstdc++")
 
 set_target_properties(pemsa_sdl PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/dist/)
 set_target_properties(pemsa_sdl PROPERTIES OUTPUT_NAME "pemsa")
+target_link_options(pemsa PRIVATE -mwindows)
 
 install(TARGETS pemsa_sdl)
