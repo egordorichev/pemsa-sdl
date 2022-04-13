@@ -48,7 +48,7 @@ int main(int argc, char* argv[]) {
 	}
 
 	SDL_Init(SDL_INIT_EVERYTHING);
-	SDL_Window* window = SDL_CreateWindow("pemsa", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 512,512, SDL_WINDOW_RESIZABLE);
+	SDL_Window* window = SDL_CreateWindow("pemsa", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 512,512, SDL_WINDOW_RESIZABLE | SDL_WINDOW_FULLSCREEN_DESKTOP);
 
 	if (window == NULL) {
 		std::cerr << "Failed to open a window\n";
@@ -131,7 +131,8 @@ int main(int argc, char* argv[]) {
 
 	double fps = 60;
 	double delta = 1 / fps;
-	bool fullscreen = false;
+	bool fullscreen = true;
+	bool skip = false;
 
 	Uint32 ticks_per_frame = 1000 / fps;
 
@@ -149,6 +150,19 @@ int main(int argc, char* argv[]) {
 						case SDL_SCANCODE_F11: {
 							fullscreen = !fullscreen;
 							SDL_SetWindowFullscreen(window, fullscreen ? SDL_WINDOW_FULLSCREEN_DESKTOP : 0);
+
+							break;
+						}
+
+						case SDL_SCANCODE_RETURN: {
+							if (SDL_GetModState() & KMOD_ALT) {
+								skip = !skip;
+
+								if (!skip) {
+									fullscreen = !fullscreen;
+									SDL_SetWindowFullscreen(window, fullscreen ? SDL_WINDOW_FULLSCREEN_DESKTOP : 0);
+								}
+							}
 
 							break;
 						}
