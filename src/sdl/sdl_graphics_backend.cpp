@@ -55,6 +55,20 @@ static int intPalette[] = {
 	UNPACK_COLOR(28), UNPACK_COLOR(29), UNPACK_COLOR(30), UNPACK_COLOR(31)
 };
 
+#define UNPACK_COLOR_TRANSPARENT(i)	(palette[i].r << 24) + (palette[i].g << 16) + (palette[i].b << 8)
+
+static int intPaletteTransparent[] = {
+	UNPACK_COLOR(0), UNPACK_COLOR(1), UNPACK_COLOR(2), UNPACK_COLOR(3),
+	UNPACK_COLOR(4), UNPACK_COLOR(5), UNPACK_COLOR(6), UNPACK_COLOR(7),
+	UNPACK_COLOR(8), UNPACK_COLOR(9), UNPACK_COLOR(10), UNPACK_COLOR(11),
+	UNPACK_COLOR(12), UNPACK_COLOR(13), UNPACK_COLOR(14), UNPACK_COLOR_TRANSPARENT(15),
+
+	UNPACK_COLOR(16), UNPACK_COLOR(17), UNPACK_COLOR(18), UNPACK_COLOR(19),
+	UNPACK_COLOR(20), UNPACK_COLOR(21), UNPACK_COLOR(22), UNPACK_COLOR(23),
+	UNPACK_COLOR(24), UNPACK_COLOR(25), UNPACK_COLOR(26), UNPACK_COLOR(27),
+	UNPACK_COLOR(28), UNPACK_COLOR(29), UNPACK_COLOR(30), UNPACK_COLOR_TRANSPARENT(31)
+};
+
 #undef UNPACK_COLOR
 
 SdlGraphicsBackend::SdlGraphicsBackend(SDL_Window *window) {
@@ -71,15 +85,17 @@ SdlGraphicsBackend::SdlGraphicsBackend(SDL_Window *window) {
 
 SdlGraphicsBackend::~SdlGraphicsBackend() {
 	SDL_FreeSurface(this->surface);
+	SDL_FreeSurface(this->systemSurface);
 	SDL_DestroyRenderer(this->renderer);
 }
 
 void SdlGraphicsBackend::createSurface() {
 	this->surface = SDL_CreateRGBSurfaceWithFormat(0, 128, 128, 32, SDL_PIXELFORMAT_RGBA8888);
+	this->systemSurface = SDL_CreateRGBSurfaceWithFormat(0, 128, 128, 32, SDL_PIXELFORMAT_RGBA8888);
 }
 
-void SdlGraphicsBackend::flip() {
-	Uint32* pixels = (Uint32*) this->surface->pixels;
+void SdlGraphicsBackend::doFlip(bool transparent) {
+	Uint32* pixels = (Uint32*) (transparent ? this->systemSurface : this->surface)->pixels;
 	uint8_t* ram = this->emulator->getMemoryModule()->ram;
 	PemsaDrawStateModule* drawStateModule = this->emulator->getDrawStateModule();
 
@@ -95,12 +111,21 @@ void SdlGraphicsBackend::flip() {
 		screenPalette[i] = c % 32;
 	}
 
+	int* pal = transparent ? intPaletteTransparent : intPalette;
+
 	for (int i = 0; i < 0x2000; i++) {
 		uint8_t val = ram[i + PEMSA_RAM_SCREEN];
 
-		pixels[i * 2] = intPalette[screenPalette[val & 0x0f]];
-		pixels[i * 2 + 1] = intPalette[screenPalette[val >> 4]];
+		pixels[i * 2] = pal[screenPalette[val & 0x0f]];
+		pixels[i * 2 + 1] = pal[screenPalette[val >> 4]];
 	}
+}
+
+void SdlGraphicsBackend::flip() {
+	this->doFlip(false);
+	this->emulator->setMemoryModule(this->emulator->getSystemMemoryModule());
+	this->doFlip(true);
+	this->emulator->setMemoryModule(this->emulator->getActualMemoryModule());
 }
 
 SDL_Surface *SdlGraphicsBackend::getSurface() {
@@ -139,16 +164,14 @@ void SdlGraphicsBackend::resize() {
 	this->offsetY = (height - this->scale * 128) / 2;
 }
 
-void SdlGraphicsBackend::render() {
+void SdlGraphicsBackend::actualRender(bool system) {
 	SDL_Rect src = { 0, 0, 128, 128 };
 	SDL_Rect dst = { this->getOffsetX(), this->getOffsetY(), (int) (this->getScale() * 128), (int) (this->getScale() * 128) };
 
 	int angle = 0;
+
 	SDL_RendererFlip flip = SDL_FLIP_NONE;
-
-	SDL_Texture* texture = SDL_CreateTextureFromSurface(this->renderer, this->surface);
-	SDL_RenderClear(this->renderer);
-
+	SDL_Texture* texture = SDL_CreateTextureFromSurface(this->renderer, system ? this->systemSurface : this->surface);
 	PemsaDrawMode drawMode = this->emulator->getGraphicsModule()->getDrawMode();
 
 	if (drawMode != SCREEN_NORMAL) {
@@ -241,9 +264,18 @@ void SdlGraphicsBackend::render() {
 	}
 
 	SDL_RenderCopyEx(this->renderer, texture, &src, &dst, angle, NULL, flip);
+	SDL_DestroyTexture(texture);
+}
+
+void SdlGraphicsBackend::render() {
+	SDL_RenderClear(this->renderer);
+
+	this->actualRender(false);
+	this->emulator->setMemoryModule(this->emulator->getSystemMemoryModule());
+	this->actualRender(true);
+	this->emulator->setMemoryModule(this->emulator->getActualMemoryModule());
 
 	SDL_RenderPresent(this->renderer);
-	SDL_DestroyTexture(texture);
 }
 
 void SdlGraphicsBackend::setFps(int fps) {

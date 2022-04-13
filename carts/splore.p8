@@ -26,12 +26,25 @@ function _init()
   c[3]=title=="unknown" and c[1] or title
   c[4]=label
  end
+
+ if #carts == 0 then
+  while true do
+    cls()
+    print("no carts found", 1, 1)
+    flip()
+  end
+ end
+
  update_bg()
 end
 
 function update_bg()
  dset(0,current)
- local d=carts[current][4]
+ local c = carts[current]
+
+ if not c then return end
+
+ local d=c[4]
  for i=0,128*128-1 do
   sset(
    i%128,flr(i/128),

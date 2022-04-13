@@ -34,6 +34,7 @@ class SdlGraphicsBackend : public PemsaGraphicsBackend {
 		SDL_Window* window;
 		SDL_Renderer* renderer;
 		SDL_Surface* surface;
+		SDL_Surface* systemSurface;
 
 		bool intScales;
 		float scale;
@@ -42,6 +43,8 @@ class SdlGraphicsBackend : public PemsaGraphicsBackend {
 		int fps;
 
 		void resize();
+		void actualRender(bool system);
+		void doFlip(bool transparent);
 };
 
 #endif
