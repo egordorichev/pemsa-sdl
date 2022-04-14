@@ -2,6 +2,7 @@ name: CMake-Windows
 
 on:
   push:
+  tag:
   pull_request:
       branches: [ master ]
 
