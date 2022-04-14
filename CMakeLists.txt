@@ -23,7 +23,13 @@ include_directories(${SDL2_INCLUDE_DIRS} libs/pemsa/include/ libs/pemsa/libs/lua
 set(THREADS_PREFER_PTHREAD_FLAG ON)
 find_package(Threads REQUIRED)
 
+IF(WIN32)
+set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} /SUBSYSTEM:WINDOWS /ENTRY:main")
+add_executable(pemsa_sdl WIN32 src/sdl/main.cpp src/sdl/sdl_graphics_backend.cpp src/sdl/sdl_audio_backend.cpp src/sdl/sdl_input_backend.cpp)
+ELSE()
 add_executable(pemsa_sdl src/sdl/main.cpp src/sdl/sdl_graphics_backend.cpp src/sdl/sdl_audio_backend.cpp src/sdl/sdl_input_backend.cpp)
+ENDIF(WIN32)
+
 target_link_libraries(pemsa_sdl pemsa ${SDL2_LIBRARIES} Threads::Threads)
 
 set_target_properties(pemsa_sdl PROPERTIES LINK_SEARCH_START_STATIC 1)
@@ -33,5 +39,6 @@ set(CMAKE_EXE_LINKER_FLAGS "-static-libgcc -static-libstdc++")
 
 set_target_properties(pemsa_sdl PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/dist/)
 set_target_properties(pemsa_sdl PROPERTIES OUTPUT_NAME "pemsa")
+target_link_options(pemsa PRIVATE -mwindows)
 
 install(TARGETS pemsa_sdl)

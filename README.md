@@ -1,6 +1,14 @@
 # pemsa-sdl
 SDL2 backend for pemsa pico8 runtime
 
+```
+pemsa [cart] [flags]
+	--export-all	Exports carts from input folder to output
+	--no-splash	Disables startup splash
+	--save [file]	Saves the compiled cart
+	--no-fullscreen	Disables fullscreen by default
+```
+
 ## Compiling
 
 ### Linux
@@ -28,3 +36,10 @@ git submodule update --init --recursive
 cmake . -D WINDOWS=1
 cmake --build . --target pemsa_sdl --config Debug
 ```
+
+###### Controls
+
+* Arrows
+* X
+* Z/C
+* Alt+Enter/F11 to toggle fullscreen

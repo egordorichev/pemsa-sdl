@@ -1,11 +1,10 @@
 name: CMake-Windows
 
 on:
-  workflow_dispatch:
-  release:
-    branches: [ master ]
+  push:
   pull_request:
       branches: [ master ]
+
 
 env:
   # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)

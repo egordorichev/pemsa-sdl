@@ -82,7 +82,7 @@ void SdlInputBackend::handleEvent(SDL_Event *event) {
 			int player;
 			int button = scancode_to_button(event->key.keysym.scancode, &player);
 
-			if (button != -1 && this->state[player][button] == 0) {
+			if (button != -1 && this->state[player][button] == 0 && (SDL_GetModState() & (KMOD_CTRL | KMOD_SHIFT | KMOD_ALT | KMOD_GUI)) == KMOD_NONE) {
 				this->state[player][button] = 1;
 			}
 
