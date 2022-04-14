@@ -36,3 +36,10 @@ git submodule update --init --recursive
 cmake . -D WINDOWS=1
 cmake --build . --target pemsa_sdl --config Debug
 ```
+
+###### Controls
+
+* Arrows
+* X
+* Z/C
+* Alt+Enter/F11 to toggle fullscreen
