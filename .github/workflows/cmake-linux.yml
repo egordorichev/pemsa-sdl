@@ -1,7 +1,6 @@
 name: CMake-Linux
 
 on:
-  tag:
   push:
   pull_request:
       branches: [ master ]
