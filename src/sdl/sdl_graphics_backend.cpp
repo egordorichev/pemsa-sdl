@@ -123,9 +123,9 @@ void SdlGraphicsBackend::doFlip(bool transparent) {
 
 void SdlGraphicsBackend::flip() {
 	this->doFlip(false);
-	this->emulator->setMemoryModule(this->emulator->getSystemMemoryModule());
+	/*this->emulator->setMemoryModule(this->emulator->getSystemMemoryModule());
 	this->doFlip(true);
-	this->emulator->setMemoryModule(this->emulator->getActualMemoryModule());
+	this->emulator->setMemoryModule(this->emulator->getActualMemoryModule());*/
 }
 
 SDL_Surface *SdlGraphicsBackend::getSurface() {
@@ -271,9 +271,9 @@ void SdlGraphicsBackend::render() {
 	SDL_RenderClear(this->renderer);
 
 	this->actualRender(false);
-	this->emulator->setMemoryModule(this->emulator->getSystemMemoryModule());
+	/*this->emulator->setMemoryModule(this->emulator->getSystemMemoryModule());
 	this->actualRender(true);
-	this->emulator->setMemoryModule(this->emulator->getActualMemoryModule());
+	this->emulator->setMemoryModule(this->emulator->getActualMemoryModule());*/
 
 	SDL_RenderPresent(this->renderer);
 }
