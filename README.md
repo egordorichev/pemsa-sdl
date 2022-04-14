@@ -1,6 +1,14 @@
 # pemsa-sdl
 SDL2 backend for pemsa pico8 runtime
 
+```
+pemsa [cart] [flags]
+	--export-all	Exports carts from input folder to output
+	--no-splash	Disables startup splash
+	--save [file]	Saves the compiled cart
+	--no-fullscreen	Disables fullscreen by default
+```
+
 ## Compiling
 
 ### Linux
