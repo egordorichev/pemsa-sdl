@@ -26,6 +26,7 @@ int main(int argc, char* argv[]) {
 	bool exportAll = false;
 	bool enableSplash = true;
 	bool cartSet = false;
+	bool fullscreen = true;
 
 	if (argc > 1) {
 		for (int i = 1; i < argc; i++) {
@@ -35,6 +36,16 @@ int main(int argc, char* argv[]) {
 				exportAll = true;
 			} else if (strcmp(arg, "--no-splash") == 0) {
 				enableSplash = false;
+			} else if (strcmp(arg, "--no-fullscreen") == 0) {
+				fullscreen = false;
+			} else if (strcmp(arg, "--help") == 0) {
+				std::cout << "pemsa [cart] [flags]\n"
+				             "\t--export-all\tExports carts from input folder to output\n"
+				             "\t--no-splash\tDisables startup splash\n"
+				             "\t--save [file]\tSaves the compiled cart\n"
+				             "\t--no-fullscreen\tDisables fullscreen by default\n";
+
+				return 0;
 			} else if (strcmp(arg, "--save") == 0) {
 				if (argc > i + 1) {
 					out = argv[i + 1];
@@ -48,7 +59,7 @@ int main(int argc, char* argv[]) {
 	}
 
 	SDL_Init(SDL_INIT_EVERYTHING);
-	SDL_Window* window = SDL_CreateWindow("pemsa", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 512,512, SDL_WINDOW_RESIZABLE | SDL_WINDOW_FULLSCREEN_DESKTOP);
+	SDL_Window* window = SDL_CreateWindow("pemsa", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 512,512, SDL_WINDOW_RESIZABLE | (fullscreen ? SDL_WINDOW_FULLSCREEN_DESKTOP : 0));
 
 	if (window == NULL) {
 		std::cerr << "Failed to open a window\n";
@@ -131,7 +142,6 @@ int main(int argc, char* argv[]) {
 
 	double fps = 60;
 	double delta = 1 / fps;
-	bool fullscreen = true;
 	bool skip = false;
 
 	Uint32 ticks_per_frame = 1000 / fps;
