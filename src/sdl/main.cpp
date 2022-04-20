@@ -40,10 +40,10 @@ int main(int argc, char* argv[]) {
 				fullscreen = false;
 			} else if (strcmp(arg, "--help") == 0) {
 				std::cout << "pemsa [cart] [flags]\n"
-				             "\t--export-all\tExports carts from input folder to output\n"
-				             "\t--no-splash\tDisables startup splash\n"
-				             "\t--save [file]\tSaves the compiled cart\n"
-				             "\t--no-fullscreen\tDisables fullscreen by default\n";
+         "\t--export-all\tExports carts from input folder to output\n"
+         "\t--no-splash\tDisables startup splash\n"
+         "\t--save [file]\tSaves the compiled cart\n"
+         "\t--no-fullscreen\tDisables fullscreen by default\n";
 
 				return 0;
 			} else if (strcmp(arg, "--save") == 0) {
@@ -119,6 +119,8 @@ int main(int argc, char* argv[]) {
 		return 0;
 	}
 
+	std::cout << "Attempting to load " << cart << "\n";
+
 	if (!emulator.getCartridgeModule()->load(cart, out != nullptr)) {
 		if (cartSet) {
 			std::cerr << "Failed to load the cart " << cart << "\n";
@@ -128,7 +130,33 @@ int main(int argc, char* argv[]) {
 
 			return 1;
 		} else {
-			emulator.getCartridgeModule()->loadFromString("nocart", noCartPlaceholder, false);
+			bool loaded = false;
+
+			for (auto& dirEntry : std::filesystem::directory_iterator("./")) {
+				if (dirEntry.path().extension() != ".p8") {
+					continue;
+				}
+
+				auto str = dirEntry.path().c_str();
+
+#ifdef _WIN32 // Dear windows, just why?
+				_bstr_t b(str);
+				cart = b;
+#else
+				cart = str;
+#endif
+
+				std::cout << "Attempting to load " << cart << "\n";
+
+				if (emulator.getCartridgeModule()->load(cart, out != nullptr)) {
+					loaded = true;
+					break;
+				}
+			}
+
+			if (!loaded) {
+				emulator.getCartridgeModule()->loadFromString("nocart", noCartPlaceholder, false);
+			}
 		}
 	}
 
