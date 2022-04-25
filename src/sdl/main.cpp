@@ -5,6 +5,10 @@
 
 #include "pemsa/pemsa.hpp"
 
+#ifdef XBOX
+#include "xbox_input_backend.hpp"
+#endif
+
 #ifdef WINDOWS
 #include "SDL.h"
 #else
@@ -20,7 +24,7 @@
 #endif
 
 int main(int argc, char* argv[]) {
-	const char* cart = "splore.p8";
+	const char* cart = "titlescreen.p8";
 	const char* out = nullptr;
 
 	bool exportAll = false;
@@ -29,18 +33,21 @@ int main(int argc, char* argv[]) {
 
 	if (argc > 1) {
 		for (int i = 1; i < argc; i++) {
-			const char *arg = argv[i];
+			const char* arg = argv[i];
 
 			if (strcmp(arg, "--export-all") == 0) {
 				exportAll = true;
-			} else if (strcmp(arg, "--no-splash") == 0) {
+			}
+			else if (strcmp(arg, "--no-splash") == 0) {
 				enableSplash = false;
-			} else if (strcmp(arg, "--save") == 0) {
+			}
+			else if (strcmp(arg, "--save") == 0) {
 				if (argc > i + 1) {
 					out = argv[i + 1];
 					i++;
 				}
-			} else {
+			}
+			else {
 				cart = argv[i];
 				cartSet = true;
 			}
@@ -48,7 +55,7 @@ int main(int argc, char* argv[]) {
 	}
 
 	SDL_Init(SDL_INIT_EVERYTHING);
-	SDL_Window* window = SDL_CreateWindow("pemsa", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 512,512, SDL_WINDOW_RESIZABLE);
+	SDL_Window* window = SDL_CreateWindow("pemsa", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 512, 512, SDL_WINDOW_RESIZABLE);
 
 	if (window == NULL) {
 		std::cerr << "Failed to open a window\n";
@@ -60,12 +67,13 @@ int main(int argc, char* argv[]) {
 	SDL_SetWindowMinimumSize(window, 128, 128);
 
 	SdlGraphicsBackend* graphics = new SdlGraphicsBackend(window);
-	SdlInputBackend* input = new SdlInputBackend();
 	bool running = true;
 
-	PemsaEmulator emulator(graphics, new SdlAudioBackend(), input, &running, enableSplash);
 	SDL_ShowCursor(0);
 
+#ifndef XBOX
+	SdlInputBackend* input = new SdlInputBackend();
+	PemsaEmulator emulator(graphics, new SdlAudioBackend(), input, &running, enableSplash);
 	if (exportAll) {
 		if (!std::filesystem::exists("out")) {
 			std::filesystem::create_directory("out");
@@ -78,16 +86,17 @@ int main(int argc, char* argv[]) {
 
 			auto str = dirEntry.path().c_str();
 
-			#ifdef _WIN32 // Dear windows, just why?
-					_bstr_t b(str);
-					const char* out = b;
-			#else
-					const char* out = str;
-			#endif
+#ifdef _WIN32 // Dear windows, just why?
+			_bstr_t b(str);
+			const char* out = b;
+#else
+			const char* out = str;
+#endif
 
 			if (!emulator.getCartridgeModule()->load(out, true)) {
 				std::cerr << "Failed to load the cart " << dirEntry << "\n";
-			}	else {
+			}
+			else {
 				emulator.getCartridgeModule()->save(("out/" + dirEntry.path().string().substr(2)).c_str());
 			}
 		}
@@ -97,6 +106,9 @@ int main(int argc, char* argv[]) {
 
 		return 0;
 	}
+#else
+	PemsaEmulator emulator(graphics, new SdlAudioBackend(), new XboxInputBackend(), &running, enableSplash);
+#endif
 
 	if (!emulator.getCartridgeModule()->load(cart, out != nullptr)) {
 		if (cartSet) {
@@ -106,7 +118,8 @@ int main(int argc, char* argv[]) {
 			SDL_Quit();
 
 			return 1;
-		} else {
+		}
+		else {
 			emulator.getCartridgeModule()->loadFromString("nocart", noCartPlaceholder, false);
 		}
 	}
@@ -128,11 +141,15 @@ int main(int argc, char* argv[]) {
 			if (event.type == SDL_QUIT) {
 				// running = false;
 				emulator.stop();
-			} else {
+			}
+			else {
 				if (event.type == SDL_KEYDOWN && event.key.keysym.scancode == SDL_SCANCODE_F5) {
 					emulator.getCartridgeModule()->initiateSelfDestruct();
-				} else {
+				}
+				else {
+#ifndef XBOX
 					input->handleEvent(&event);
+#endif
 					graphics->handleEvent(&event);
 				}
 			}
